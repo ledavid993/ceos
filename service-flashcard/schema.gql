@@ -1,0 +1,19 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Flashcard {
+  id: ID!
+  front: String!
+  back: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Query {
+  getFlashcards: [Flashcard!]!
+}
+
+type Mutation {
+  createFlashcard: Flashcard!
+}

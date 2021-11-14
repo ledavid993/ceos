@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  service-flashcard:
+    image: ceos/service-flashcard
+    restart: on-failure
+    build:
+      context: ./service-flashcard
+      dockerfile: ./Dockerfile
+      target: development
+    volumes:
+      - ./service-flashcard:/usr/src/app
+      - ./service-flashcard/node_modules:/usr/src/app/node_modules
+    command: yarn run start:dev
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo
+    environment:
+      - NODE_ENV=development
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db/mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
