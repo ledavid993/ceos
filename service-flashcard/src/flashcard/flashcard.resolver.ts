@@ -9,23 +9,32 @@ import { FlashcardService } from './flashcard.service';
 export class FlashcardResolver {
   constructor(private readonly flashcardService: FlashcardService) {}
 
-  // @Query(() => Flashcard)
-  // getFlashcard(@Args('id') id: string) {
-  //   return this.flashcardService.getFlashcard(id);
-  // }
+  @Query(() => Flashcard)
+  getFlashcard(@Args('getFlashcard') id: string) {
+    return this.flashcardService.getFlashcard(id);
+  }
 
   @Query(() => [Flashcard])
-  getFlashcards(@Args() getFlashcardArgs: GetFlashcardArgs) {
+  getFlashcards(@Args() getFlashcardArgs: GetFlashcardArgs | null) {
     return this.flashcardService.getFlashcards(getFlashcardArgs);
   }
 
   @Mutation(() => Flashcard)
-  createFlashcard(@Args() createFlashcardInput: CreateFlashcardInput) {
+  createFlashcard(
+    @Args('createFlashCard') createFlashcardInput: CreateFlashcardInput,
+  ) {
     return this.flashcardService.createFlashcard(createFlashcardInput);
   }
 
-  // @Mutation(() => Flashcard)
-  // updateFlashcard(@Args() updateFlashcardInput: CreateFlashcardInput) {
-  //   return this.flashcardService.updateFlashcard(updateFlashcardInput);
-  // }
+  @Mutation(() => Flashcard)
+  updateFlashcard(
+    @Args('updateFlashCard') updateFlashcardInput: CreateFlashcardInput,
+  ) {
+    return this.flashcardService.updateFlashcard(updateFlashcardInput);
+  }
+
+  @Mutation(() => Flashcard)
+  deleteFlashcard(@Args('id') id: string) {
+    return this.flashcardService.deleteFlashcard(id);
+  }
 }

@@ -11,9 +11,17 @@ type Flashcard {
 }
 
 type Query {
-  getFlashcards: [Flashcard!]!
+  getFlashcard(getFlashcard: String!): Flashcard!
+  getFlashcards(backContains: String!, frontContains: String!): [Flashcard!]!
 }
 
 type Mutation {
-  createFlashcard: Flashcard!
+  createFlashcard(createFlashCard: CreateFlashcardInput!): Flashcard!
+  updateFlashcard(updateFlashCard: CreateFlashcardInput!): Flashcard!
+  deleteFlashcard(id: String!): Flashcard!
+}
+
+input CreateFlashcardInput {
+  back: String!
+  front: String!
 }
