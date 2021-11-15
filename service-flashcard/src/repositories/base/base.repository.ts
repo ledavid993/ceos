@@ -28,7 +28,15 @@ export class BaseAbstractRepository<T>
     return await this.find();
   }
 
+  public async findAllByCondition(filterCondition: any): Promise<T[]> {
+    return await this.find({ where: filterCondition });
+  }
+
   public async removeEntity(id: string | number): Promise<DeleteResult> {
     return await this.delete(id);
+  }
+
+  public async updateEntity(data: T | any): Promise<T> {
+    return await this.save(data);
   }
 }

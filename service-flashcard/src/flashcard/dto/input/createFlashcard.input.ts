@@ -2,7 +2,7 @@ import { Field, InputType } from '@nestjs/graphql';
 import { MaxLength } from 'class-validator';
 
 @InputType()
-export class FlashcardInput {
+export class CreateFlashcardInput {
   @Field()
   @MaxLength(100)
   title: string;

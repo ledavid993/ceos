@@ -9,7 +9,11 @@ export interface BaseInterfaceRepository<T> {
 
   findAll(): Promise<T[]>;
 
+  findAllByCondition(filterCondition: any): Promise<T[]>;
+
   removeEntity(id: string | number): Promise<DeleteResult>;
 
   findWithRelations(relations: any): Promise<T[]>;
+
+  updateEntity(data: T | any): Promise<T>;
 }
