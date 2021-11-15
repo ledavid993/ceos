@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type Flashcard {
-  id: ID!
+  uid: ID!
   front: String!
   back: String!
   createdAt: String!
@@ -11,8 +11,8 @@ type Flashcard {
 }
 
 type Query {
-  getFlashcard(getFlashcard: String!): Flashcard!
-  getFlashcards(backContains: String!, frontContains: String!): [Flashcard!]!
+  getOneFlashcard(uid: String!): Flashcard!
+  getFlashcards(backContains: String, frontContains: String): [Flashcard!]!
 }
 
 type Mutation {

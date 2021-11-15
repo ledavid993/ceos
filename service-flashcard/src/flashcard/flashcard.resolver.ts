@@ -1,22 +1,23 @@
 import { UpdateResult } from 'typeorm';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { GetFlashcardArgs } from './dto/args/getFlashcards.args';
+import { GetFlashcardsArgs } from './dto/args/getFlashcards.args';
 import { CreateFlashcardInput } from './dto/input/createFlashcard.input';
 import { Flashcard } from './entity/flashcard.entity';
 import { FlashcardService } from './flashcard.service';
+import { GetOneFlashcardArgs } from './dto/args/getOneFlashCard.args';
 
 @Resolver(() => Flashcard)
 export class FlashcardResolver {
   constructor(private readonly flashcardService: FlashcardService) {}
 
   @Query(() => Flashcard)
-  getFlashcard(@Args('getFlashcard') id: string) {
-    return this.flashcardService.getFlashcard(id);
+  getOneFlashcard(@Args() getOneFlashcardArgs: GetOneFlashcardArgs) {
+    return this.flashcardService.getOneFlashcard(getOneFlashcardArgs);
   }
 
   @Query(() => [Flashcard])
-  getFlashcards(@Args() getFlashcardArgs: GetFlashcardArgs | null) {
-    return this.flashcardService.getFlashcards(getFlashcardArgs);
+  getFlashcards(@Args() getFlashcardsArgs: GetFlashcardsArgs | null) {
+    return this.flashcardService.getFlashcards(getFlashcardsArgs);
   }
 
   @Mutation(() => Flashcard)

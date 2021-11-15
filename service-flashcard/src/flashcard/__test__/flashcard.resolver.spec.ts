@@ -5,36 +5,36 @@ import { FlashcardService } from '../flashcard.service';
 
 const mockFlashcardService = () => ({
   createFlashcard: jest.fn().mockImplementation((mockCreateFlashcardInput) => ({
-    id: 1,
+    uid: 1,
     createdAt: '2020-01-01',
     updatedAt: '2020-01-01',
     ...mockCreateFlashcardInput,
   })),
   getFlashcards: jest.fn().mockImplementation((mockGetFlashcardArgs) => [
     {
-      id: 1,
+      uid: 1,
       createdAt: '2020-01-01',
       updatedAt: '2020-01-01',
       front: 'What is the color of the sky?',
       back: 'Blue',
     },
     {
-      id: 2,
+      uid: 2,
       createdAt: '2020-01-01',
       updatedAt: '2020-01-01',
       front: 'What is the biggest mammal that current exist?',
       back: 'Elephants',
     },
   ]),
-  getFlashcard: jest.fn().mockImplementation((mockId) => ({
-    id: 2,
+  getOneFlashcard: jest.fn().mockImplementation((mockId) => ({
+    uid: 2,
     createdAt: '2020-01-01',
     updatedAt: '2020-01-01',
     front: 'What is the biggest mammal that current exist?',
     back: 'Elephant',
   })),
   updateFlashcard: jest.fn().mockImplementation((mockCreateFlashcardInput) => ({
-    id: 1,
+    uid: 1,
     createdAt: '2020-01-01',
     updatedAt: '2020-01-02',
     ...mockCreateFlashcardInput,
@@ -66,7 +66,7 @@ describe('FlashcardResolver', () => {
       };
       it('should make a new flashcard', () => {
         expect(resolver.createFlashcard(mockCreateFlashcardInput)).toEqual({
-          id: 1,
+          uid: 1,
           createdAt: '2020-01-01',
           updatedAt: '2020-01-01',
           ...mockCreateFlashcardInput,
@@ -75,8 +75,8 @@ describe('FlashcardResolver', () => {
     });
     describe('getReservation', () => {
       it('should get a flashcard', () => {
-        expect(resolver.getFlashcard('2')).toEqual({
-          id: 2,
+        expect(resolver.getOneFlashcard({ uid: '2' })).toEqual({
+          uid: 2,
           createdAt: '2020-01-01',
           updatedAt: '2020-01-01',
           front: 'What is the biggest mammal that current exist?',
@@ -89,14 +89,14 @@ describe('FlashcardResolver', () => {
         const mockGetFlashcardsArgs: any = {};
         expect(resolver.getFlashcards(mockGetFlashcardsArgs)).toEqual([
           {
-            id: 1,
+            uid: 1,
             createdAt: '2020-01-01',
             updatedAt: '2020-01-01',
             front: 'What is the color of the sky?',
             back: 'Blue',
           },
           {
-            id: 2,
+            uid: 2,
             createdAt: '2020-01-01',
             updatedAt: '2020-01-01',
             front: 'What is the biggest mammal that current exist?',
@@ -116,7 +116,7 @@ describe('FlashcardResolver', () => {
 
         expect(result).toEqual([
           {
-            id: 1,
+            uid: 1,
             createdAt: '2020-01-01',
             updatedAt: '2020-01-01',
             front: 'What is the color of the sky?',

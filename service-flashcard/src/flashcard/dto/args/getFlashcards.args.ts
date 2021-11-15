@@ -1,10 +1,10 @@
 import { ArgsType, Field } from '@nestjs/graphql';
 
 @ArgsType()
-export class GetFlashcardArgs {
-  @Field()
+export class GetFlashcardsArgs {
+  @Field({ nullable: true })
   backContains?: string;
 
-  @Field()
+  @Field({ nullable: true })
   frontContains?: string;
 }

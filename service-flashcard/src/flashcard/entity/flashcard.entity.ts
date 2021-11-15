@@ -14,7 +14,7 @@ export class Flashcard {
 
   @PrimaryGeneratedColumn()
   @Field(() => ID)
-  id: string;
+  uid: string;
 
   @Column()
   @Field()
